@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef, ReactNode } from "react";
 import { Phone, ChevronDown, ChevronUp, Menu, X, HeartPulse, Shield, Move, AlignCenter, Dumbbell, Sparkles, ClipboardCheck, Target, UserCheck, RefreshCw, Home, Activity, Star, Users, Award, Clock, MessageCircle, ChevronRight, User, ShieldCheck } from "lucide-react";
 import MeshGradient from "../components/MeshGradient";
-import InteractiveAnatomy from "../components/InteractiveAnatomy";
 
 const WA = "https://wa.me/5500000000000";
 
@@ -397,7 +396,6 @@ export default function PremiumLanding() {
       <Navbar />
       <Hero />
       <HeroBenefits />
-      <InteractiveAnatomy />
       <Benefits />
       <Treatment />
       <About />
