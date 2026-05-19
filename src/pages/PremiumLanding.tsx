@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef, ReactNode } from "react";
 import { Phone, ChevronDown, ChevronUp, Menu, X, HeartPulse, Shield, Move, AlignCenter, Dumbbell, Sparkles, ClipboardCheck, Target, UserCheck, RefreshCw, Home, Activity, Star, Users, Award, Clock, MessageCircle, ChevronRight, User, ShieldCheck } from "lucide-react";
+import MeshGradient from "../components/MeshGradient";
+import InteractiveAnatomy from "../components/InteractiveAnatomy";
 
 const WA = "https://wa.me/5500000000000";
 
@@ -37,6 +39,7 @@ function Navbar() {
 function Hero() {
   return (
     <section id="top" className="relative pt-28 md:pt-36 overflow-hidden">
+      <MeshGradient />
       <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-10 lg:gap-4 relative z-10">
         
         {/* Left Column */}
@@ -394,6 +397,7 @@ export default function PremiumLanding() {
       <Navbar />
       <Hero />
       <HeroBenefits />
+      <InteractiveAnatomy />
       <Benefits />
       <Treatment />
       <About />
