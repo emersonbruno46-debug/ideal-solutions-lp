@@ -8,51 +8,105 @@ import { LogoPremium } from "@/components/premium/LogoPremium";
 
 const useAutoScroll = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const activeRef = useRef(true);
 
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
+    if (window.innerWidth >= 768) return;
 
-    let animationFrameId: number;
-    let direction = 1;
+    let raf: number;
     let pos = 0;
+    let dir = 1;
+    let autoRunning = true;
+    let dragging = false;
+    let velocity = 0;
+    let dragStartX = 0;
+    let dragStartY = 0;
+    let dragStartScroll = 0;
+    let lastX = 0;
+    let gestureDecided: boolean | null = null; // null = não decidido, true = horizontal, false = vertical
 
-    // Captura o primeiro toque ANTES dos filhos consumirem o evento
-    // Isso para o auto-scroll definitivamente e libera o scroll nativo
-    const handleTouchStart = () => {
-      activeRef.current = false;
+    // RAF: auto-scroll quando inativo, momentum depois do arraste
+    const tick = () => {
+      if (autoRunning && !dragging) {
+        pos += 0.5 * dir;
+        const maxS = el.scrollWidth - el.clientWidth;
+        if (pos >= maxS) { dir = -1; pos = maxS; }
+        else if (pos <= 0) { dir = 1; pos = 0; }
+        el.scrollLeft = pos;
+      } else if (!dragging && !autoRunning && Math.abs(velocity) > 0.3) {
+        // Momentum após soltar
+        pos += velocity;
+        velocity *= 0.92;
+        const maxS = el.scrollWidth - el.clientWidth;
+        pos = Math.max(0, Math.min(maxS, pos));
+        el.scrollLeft = pos;
+      }
+      raf = requestAnimationFrame(tick);
     };
-    el.addEventListener('touchstart', handleTouchStart, { capture: true, passive: true });
+    raf = requestAnimationFrame(tick);
 
-    // Reseta quando a seção sai completamente da tela
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) {
-          activeRef.current = true;
-          pos = 0;
-          direction = 1;
-          el.scrollLeft = 0;
-        }
-      },
-      { threshold: 0 }
-    );
+    const onTouchStart = (e: TouchEvent) => {
+      dragStartX = e.touches[0].clientX;
+      dragStartY = e.touches[0].clientY;
+      dragStartScroll = el.scrollLeft;
+      pos = el.scrollLeft;
+      lastX = e.touches[0].clientX;
+      velocity = 0;
+      dragging = false;
+      gestureDecided = null;
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      const dx = e.touches[0].clientX - dragStartX;
+      const dy = e.touches[0].clientY - dragStartY;
+
+      // Aguarda movimento mínimo de 6px para decidir direção do gesto
+      if (gestureDecided === null) {
+        if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
+        gestureDecided = Math.abs(dx) > Math.abs(dy);
+      }
+
+      if (!gestureDecided) return; // gesto vertical → deixa o browser scrollar a página
+
+      // Gesto horizontal confirmado
+      e.preventDefault(); // bloqueia scroll vertical da página durante arraste horizontal
+      autoRunning = false;
+      dragging = true;
+      velocity = lastX - e.touches[0].clientX;
+      lastX = e.touches[0].clientX;
+      const maxS = el.scrollWidth - el.clientWidth;
+      pos = Math.max(0, Math.min(maxS, dragStartScroll - dx));
+      el.scrollLeft = pos;
+    };
+
+    const onTouchEnd = () => {
+      dragging = false;
+      gestureDecided = null;
+      // velocity continua sendo aplicado via RAF (momentum)
+    };
+
+    el.addEventListener('touchstart', onTouchStart, { passive: true });
+    el.addEventListener('touchmove', onTouchMove, { passive: false }); // passive:false para poder chamar preventDefault
+    el.addEventListener('touchend', onTouchEnd, { passive: true });
+
+    // Reseta tudo quando sai do viewport
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) {
+        autoRunning = true;
+        pos = 0;
+        dir = 1;
+        velocity = 0;
+        el.scrollLeft = 0;
+      }
+    }, { threshold: 0 });
     observer.observe(el);
 
-    const tick = () => {
-      if (activeRef.current && window.innerWidth < 768) {
-        pos += 0.5 * direction;
-        el.scrollLeft = pos;
-        if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 1) direction = -1;
-        else if (el.scrollLeft <= 0) direction = 1;
-      }
-      animationFrameId = requestAnimationFrame(tick);
-    };
-    animationFrameId = requestAnimationFrame(tick);
-
     return () => {
-      cancelAnimationFrame(animationFrameId);
-      el.removeEventListener('touchstart', handleTouchStart, { capture: true });
+      cancelAnimationFrame(raf);
+      el.removeEventListener('touchstart', onTouchStart);
+      el.removeEventListener('touchmove', onTouchMove);
+      el.removeEventListener('touchend', onTouchEnd);
       observer.disconnect();
     };
   }, []);
@@ -367,7 +421,7 @@ const PremiumLanding = () => {
               <h2 className="text-3xl md:text-7xl font-black uppercase tracking-tighter text-white">Nosso <span className="text-[#FFDE21]">Processo</span></h2>
             </div>
             
-            <div ref={processScroll.ref} className="flex overflow-x-auto hide-scrollbar gap-6 pb-8 -mx-6 px-6 touch-pan-x md:grid md:grid-cols-3 md:pb-0 md:mx-0 md:px-0">
+            <div ref={processScroll.ref} className="flex overflow-x-auto hide-scrollbar gap-6 pb-8 -mx-6 px-6 md:grid md:grid-cols-3 md:pb-0 md:mx-0 md:px-0">
               {[
                 {
                   step: "01",
@@ -406,7 +460,7 @@ const PremiumLanding = () => {
               <p className="text-white/50 text-lg md:text-xl max-w-2xl mx-auto font-medium">O antes e depois de negócios que decidiram elevar seu nível de jogo com a Ideal Solutions.</p>
             </div>
   
-            <div ref={portfolioScroll.ref} className="flex overflow-x-auto hide-scrollbar gap-8 pb-8 -mx-6 px-6 touch-pan-x md:grid md:grid-cols-3 md:pb-0 md:mx-0 md:px-0">
+            <div ref={portfolioScroll.ref} className="flex overflow-x-auto hide-scrollbar gap-8 pb-8 -mx-6 px-6 md:grid md:grid-cols-3 md:pb-0 md:mx-0 md:px-0">
               {[
                 { 
                   label: "Engenharia Civil", 
@@ -433,7 +487,6 @@ const PremiumLanding = () => {
                 <div key={i} className="shrink-0 w-[85vw] md:w-auto h-full">
                 <div
                   className="group flex flex-col rounded-[2.5rem] overflow-hidden border border-white/10 bg-[#050505] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] cursor-pointer h-full transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] md:hover:-translate-y-2.5"
-                  style={{ touchAction: 'pan-x' }}
                 >
                   <div className="relative aspect-[4/3] w-full overflow-hidden bg-white/5">
                     <img 
