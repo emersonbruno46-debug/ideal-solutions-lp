@@ -338,7 +338,7 @@ const PremiumLanding = () => {
               <h2 className="text-3xl md:text-7xl font-black uppercase tracking-tighter text-white">Nosso <span className="text-[#FFDE21]">Processo</span></h2>
             </div>
             
-            <div {...processScroll} className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-6 pb-8 -mx-4 px-4 md:grid md:grid-cols-3 md:pb-0 md:mx-0 md:px-0">
+            <div {...processScroll} className="flex overflow-x-auto hide-scrollbar gap-6 pb-8 -mx-4 px-4 md:grid md:grid-cols-3 md:pb-0 md:mx-0 md:px-0">
               {[
                 {
                   step: "01",
@@ -356,7 +356,7 @@ const PremiumLanding = () => {
                   desc: "Os toques finais que diferenciam o comum do luxo. Entregamos a sua marca pronta para dominar e liderar o mercado."
                 }
               ].map((s, i) => (
-                <div key={i} className="snap-center shrink-0 w-[85vw] md:w-auto h-full">
+                <div key={i} className="shrink-0 w-[85vw] md:w-auto h-full">
                   <DoubleBezelCard delay={0.2 * i} bentoClass="h-full">
                     <div className="text-6xl font-black text-white/5 mb-8 tracking-tighter">{s.step}</div>
                     <h3 className="text-2xl md:text-3xl font-black mb-4 uppercase tracking-tighter">{s.title}</h3>
@@ -377,7 +377,7 @@ const PremiumLanding = () => {
               <p className="text-white/50 text-lg md:text-xl max-w-2xl mx-auto font-medium">O antes e depois de negócios que decidiram elevar seu nível de jogo com a Ideal Solutions.</p>
             </div>
   
-            <div {...portfolioScroll} className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-8 pb-8 -mx-4 px-4 md:grid md:grid-cols-3 md:pb-0 md:mx-0 md:px-0">
+            <div {...portfolioScroll} className="flex overflow-x-auto hide-scrollbar gap-8 pb-8 -mx-4 px-4 md:grid md:grid-cols-3 md:pb-0 md:mx-0 md:px-0">
               {[
                 { 
                   label: "Engenharia Civil", 
@@ -401,7 +401,7 @@ const PremiumLanding = () => {
                   desc: "Marca elegante e memorável com foco no público feminino de alto padrão."
                 }
               ].map((p, i) => (
-                <div key={i} className="snap-center shrink-0 w-[85vw] md:w-auto h-full">
+                <div key={i} className="shrink-0 w-[85vw] md:w-auto h-full">
                 <motion.div 
                   initial="hidden"
                   whileInView="visible"
@@ -409,22 +409,25 @@ const PremiumLanding = () => {
                   variants={fadeUp}
                   custom={i}
                   whileHover={{ y: -10 }}
-                  className="group relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border border-white/10 bg-[#050505] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] cursor-pointer"
+                  className="group flex flex-col rounded-[2.5rem] overflow-hidden border border-white/10 bg-[#050505] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] cursor-pointer h-full"
                 >
-                  <img 
-                    src={p.img} 
-                    alt={p.title} 
-                    className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-70 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90" />
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-white/5">
+                    <img 
+                      src={p.img} 
+                      alt={p.title} 
+                      className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-110"
+                    />
+                  </div>
                   
-                  <div className="absolute bottom-8 left-8 right-8">
-                    <span className="inline-block px-3 py-1 bg-[#FFDE21] text-black rounded-full text-[10px] font-black uppercase tracking-widest mb-4">
-                      {p.tag}
-                    </span>
-                    <p className="text-white/40 text-xs font-black uppercase tracking-[0.2em] mb-1">{p.label}</p>
-                    <h4 className="text-2xl font-black text-white uppercase tracking-tight mb-3">{p.title}</h4>
-                    <p className="text-white/60 text-sm leading-relaxed font-medium opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+                  <div className="p-8 flex flex-col flex-grow justify-between">
+                    <div>
+                      <span className="inline-block px-3 py-1 bg-[#FFDE21] text-black rounded-full text-[10px] font-black uppercase tracking-widest mb-4">
+                        {p.tag}
+                      </span>
+                      <p className="text-white/40 text-xs font-black uppercase tracking-[0.2em] mb-1">{p.label}</p>
+                      <h4 className="text-2xl font-black text-white uppercase tracking-tight mb-3">{p.title}</h4>
+                    </div>
+                    <p className="text-white/60 text-sm leading-relaxed font-medium mt-2">
                       {p.desc}
                     </p>
                   </div>
