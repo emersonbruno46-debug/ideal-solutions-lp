@@ -373,7 +373,7 @@ const PremiumLanding = () => {
                 {[
                   { name: "Gabriela Gomes", role: "CEO, Gabi Cosméticos", text: "A Ideal Solutions criou toda a nossa identidade. Ficou moderno, com cara de luxo e passamos muita credibilidade agora." },
                   { name: "Jonas Santos", role: "CEO, Chop's Burger", text: "Nós da Chop's Burger estamos muito satisfeitos com os resultados visuais e indicamos a Ideal Solutions para todos!" },
-                  { name: "Wells Josue", role: "Engenheiro Especialista", text: "A estratégia mudou nossa presença online. Antes éramos invisíveis, agora temos engajamento e crescimento imediato. Resultado real." }
+                  { name: "Wellis Josue", role: "Engenheiro Especialista", text: "A estratégia mudou nossa presença online. Antes éramos invisíveis, agora temos engajamento e crescimento imediato. Resultado real." }
                 ].map((t, i) => (
                   <DoubleBezelCard key={i} delay={0.2 * i}>
                     <Star className="w-8 h-8 text-[#FFDE21] mb-8" />
