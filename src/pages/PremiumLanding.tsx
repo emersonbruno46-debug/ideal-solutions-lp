@@ -12,25 +12,40 @@ const useAutoScroll = () => {
   const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
     let animationFrameId: number;
     let direction = 1;
-    let exactScrollLeft: number | null = null;
+    let exactScrollLeft = 0;
+    let lastWrittenScrollLeft = 0;
+
+    // Detecta scroll manual pelo evento nativo (mais confiável que touch events)
+    const handleScroll = () => {
+      const delta = Math.abs(el.scrollLeft - lastWrittenScrollLeft);
+      // Se o delta for maior que 2px, é o usuário arrastando (não o auto-scroll)
+      if (delta > 2) {
+        isPausedRef.current = true;
+        exactScrollLeft = el.scrollLeft;
+        if (resumeTimer.current) clearTimeout(resumeTimer.current);
+        resumeTimer.current = setTimeout(() => {
+          isPausedRef.current = false;
+          lastWrittenScrollLeft = el.scrollLeft;
+        }, 2000);
+      }
+    };
+
+    el.addEventListener('scroll', handleScroll, { passive: true });
 
     const scroll = () => {
-      if (scrollRef.current && !isPausedRef.current && window.innerWidth < 768) {
-        if (exactScrollLeft === null) {
-          exactScrollLeft = scrollRef.current.scrollLeft;
-        }
-        // Sincroniza caso o usuário tenha arrastado manualmente
-        if (Math.abs(exactScrollLeft - scrollRef.current.scrollLeft) > 2) {
-          exactScrollLeft = scrollRef.current.scrollLeft;
-        }
+      if (!isPausedRef.current && window.innerWidth < 768) {
         exactScrollLeft += 0.5 * direction;
-        scrollRef.current.scrollLeft = exactScrollLeft;
+        el.scrollLeft = exactScrollLeft;
+        lastWrittenScrollLeft = exactScrollLeft;
 
-        if (scrollRef.current.scrollLeft + scrollRef.current.clientWidth >= scrollRef.current.scrollWidth - 1) {
+        if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 1) {
           direction = -1;
-        } else if (scrollRef.current.scrollLeft <= 0) {
+        } else if (el.scrollLeft <= 0) {
           direction = 1;
         }
       }
@@ -38,30 +53,15 @@ const useAutoScroll = () => {
     };
 
     animationFrameId = requestAnimationFrame(scroll);
-    return () => cancelAnimationFrame(animationFrameId);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      el.removeEventListener('scroll', handleScroll);
+      if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    };
   }, []);
 
-  const pause = () => {
-    if (resumeTimer.current) clearTimeout(resumeTimer.current);
-    isPausedRef.current = true;
-  };
-
-  const resume = (delay = 0) => {
-    if (resumeTimer.current) clearTimeout(resumeTimer.current);
-    resumeTimer.current = setTimeout(() => {
-      isPausedRef.current = false;
-    }, delay);
-  };
-
-  return {
-    ref: scrollRef,
-    onMouseEnter: () => pause(),
-    onMouseLeave: () => resume(0),
-    onTouchStart: () => pause(),
-    onTouchMove: () => pause(),
-    // Aguarda 1.5s após soltar o dedo para não brigar com a inércia nativa
-    onTouchEnd: () => resume(1500),
-  };
+  return { ref: scrollRef };
 };
 
 // Custom easing for cinematic motion simulating mass and spring physics
@@ -371,7 +371,7 @@ const PremiumLanding = () => {
               <h2 className="text-3xl md:text-7xl font-black uppercase tracking-tighter text-white">Nosso <span className="text-[#FFDE21]">Processo</span></h2>
             </div>
             
-            <div {...processScroll} className="flex overflow-x-auto hide-scrollbar gap-6 pb-8 -mx-6 px-6 touch-pan-x md:grid md:grid-cols-3 md:pb-0 md:mx-0 md:px-0">
+            <div ref={processScroll.ref} className="flex overflow-x-auto hide-scrollbar gap-6 pb-8 -mx-6 px-6 touch-pan-x md:grid md:grid-cols-3 md:pb-0 md:mx-0 md:px-0">
               {[
                 {
                   step: "01",
@@ -410,7 +410,7 @@ const PremiumLanding = () => {
               <p className="text-white/50 text-lg md:text-xl max-w-2xl mx-auto font-medium">O antes e depois de negócios que decidiram elevar seu nível de jogo com a Ideal Solutions.</p>
             </div>
   
-            <div {...portfolioScroll} className="flex overflow-x-auto hide-scrollbar gap-8 pb-8 -mx-6 px-6 touch-pan-x md:grid md:grid-cols-3 md:pb-0 md:mx-0 md:px-0">
+            <div ref={portfolioScroll.ref} className="flex overflow-x-auto hide-scrollbar gap-8 pb-8 -mx-6 px-6 touch-pan-x md:grid md:grid-cols-3 md:pb-0 md:mx-0 md:px-0">
               {[
                 { 
                   label: "Engenharia Civil", 
