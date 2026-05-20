@@ -166,16 +166,16 @@ const PremiumLanding = () => {
                   className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-12 backdrop-blur-md"
                 >
                   <div className="w-1.5 h-1.5 rounded-full bg-[#FFDE21] animate-pulse" />
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#FFDE21]">Agência Boutique de Design</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#FFDE21]">Agência de Posicionamento Premium</span>
                 </motion.div>
 
                 <motion.h1 
                   custom={1} variants={fadeUp} initial="hidden" animate="visible"
                   className="text-5xl sm:text-7xl md:text-8xl font-black mb-10 leading-[0.85] tracking-tighter"
                 >
-                  A Essência do <br className="hidden lg:block"/>
+                  Design que eleva sua marca à <br className="hidden lg:block"/>
                   <span className="relative inline-block mt-4 md:mt-2 text-[#FFDE21] drop-shadow-[0_0_80px_rgba(255,222,33,0.3)]">
-                    Design Premium
+                    Categoria de Luxo
                   </span>
                 </motion.h1>
 
@@ -183,27 +183,14 @@ const PremiumLanding = () => {
                   custom={2} variants={fadeUp} initial="hidden" animate="visible"
                   className="text-lg md:text-2xl text-white/50 max-w-2xl mx-auto lg:mx-0 mb-16 leading-relaxed font-medium"
                 >
-                  Construímos a presença digital de marcas que não aceitam o padrão. Estética cinemática, conversão e autoridade absoluta.
+                  Transformamos o seu negócio na única escolha lógica do mercado. Construímos identidades visuais e experiências digitais para marcas que não aceitam o padrão.
                 </motion.p>
 
                 <motion.div 
                   custom={3} variants={fadeUp} initial="hidden" animate="visible"
                   className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-8"
                 >
-                  <MagneticCTA text="Iniciar meu Projeto" />
-                  <div className="flex items-center gap-4 text-left">
-                    <div className="flex -space-x-4">
-                      {[1, 2, 3].map(i => (
-                        <div key={i} className="w-12 h-12 rounded-full border-[3px] border-[#050505] overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
-                          <img src={`https://i.pravatar.cc/150?img=${i+20}`} alt="client" />
-                        </div>
-                      ))}
-                    </div>
-                    <div>
-                      <p className="font-black text-white text-lg leading-none">+200</p>
-                      <p className="text-white/30 text-[9px] uppercase font-bold tracking-widest mt-1">Marcas</p>
-                    </div>
-                  </div>
+                  <MagneticCTA text="Solicitar Análise de Marca" />
                 </motion.div>
               </div>
 
@@ -257,8 +244,8 @@ const PremiumLanding = () => {
         <section id="serviços" className="py-24 md:py-32">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="mb-24">
-              <span className="inline-block px-3 py-1 bg-[#FFDE21]/10 text-[#FFDE21] rounded-full text-[10px] font-black uppercase tracking-widest mb-6">Expertise</span>
-              <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter">Nossas <br/><span className="text-[#FFDE21]">Soluções</span></h2>
+              <span className="inline-block px-3 py-1 bg-[#FFDE21]/10 text-[#FFDE21] rounded-full text-[10px] font-black uppercase tracking-widest mb-6">Arquitetura de Marcas</span>
+              <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter">O Padrão <br/><span className="text-[#FFDE21]">Ideal Solutions</span></h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[minmax(250px,auto)]">
@@ -270,8 +257,8 @@ const PremiumLanding = () => {
                     <Palette className="w-8 h-8 text-[#FFDE21] group-hover:text-black transition-colors" />
                   </div>
                   <div className="mt-12">
-                    <h3 className="text-3xl md:text-5xl font-black mb-4 uppercase tracking-tighter">Identidade Visual</h3>
-                    <p className="text-white/50 text-lg max-w-md">Sistemas de design complexos, logotipos marcantes e manuais de marca que posicionam você como a autoridade máxima do seu nicho.</p>
+                    <h3 className="text-3xl md:text-5xl font-black mb-4 uppercase tracking-tighter">Branding & Identidade</h3>
+                    <p className="text-white/50 text-lg max-w-md">Sistemas visuais inesquecíveis. Não criamos apenas logotipos, projetamos marcas que comandam autoridade imediata no primeiro olhar.</p>
                   </div>
                 </div>
               </DoubleBezelCard>
@@ -283,8 +270,8 @@ const PremiumLanding = () => {
                     <Share2 className="w-5 h-5 text-white/70 group-hover:text-[#FFDE21]" />
                   </div>
                   <div className="mt-8">
-                    <h3 className="text-xl font-black mb-2 uppercase tracking-tight">Social Media</h3>
-                    <p className="text-white/40 text-sm">Artes para Instagram e LinkedIn com visual de altíssimo nível.</p>
+                    <h3 className="text-xl font-black mb-2 uppercase tracking-tight">Direção de Arte (Social)</h3>
+                    <p className="text-white/40 text-sm">Transformamos seu feed em uma vitrine premium. Design estratégico que atrai clientes dispostos a pagar mais.</p>
                   </div>
                 </div>
               </DoubleBezelCard>
@@ -296,8 +283,8 @@ const PremiumLanding = () => {
                     <Globe className="w-5 h-5 text-white/70 group-hover:text-[#FFDE21]" />
                   </div>
                   <div className="mt-8">
-                    <h3 className="text-xl font-black mb-2 uppercase tracking-tight">Web Design</h3>
-                    <p className="text-white/40 text-sm">Experiências web imersivas com alta taxa de conversão.</p>
+                    <h3 className="text-xl font-black mb-2 uppercase tracking-tight">Web Design de Alta Conversão</h3>
+                    <p className="text-white/40 text-sm">Plataformas digitais imersivas e ultrarrápidas que transformam cliques em vendas, desejo e admiração.</p>
                   </div>
                 </div>
               </DoubleBezelCard>
@@ -310,9 +297,9 @@ const PremiumLanding = () => {
         <section id="portfólio" className="py-24 md:py-32 relative z-10">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="text-center mb-20">
-              <span className="inline-block px-3 py-1 bg-white/5 text-white/50 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-widest mb-6">Projetos de Sucesso</span>
-              <h2 className="text-4xl sm:text-5xl md:text-7xl font-black mb-6 text-white uppercase tracking-tighter">Impacto em <span className="text-[#FFDE21]">Números</span></h2>
-              <p className="text-white/50 text-lg md:text-xl max-w-2xl mx-auto font-medium">Projetos que elevaram marcas ao próximo nível de autoridade e reconhecimento.</p>
+              <span className="inline-block px-3 py-1 bg-white/5 text-white/50 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-widest mb-6">Cases de Sucesso</span>
+              <h2 className="text-4xl sm:text-5xl md:text-7xl font-black mb-6 text-white uppercase tracking-tighter">Nossa Assinatura no <br className="md:hidden"/><span className="text-[#FFDE21]">Mercado</span></h2>
+              <p className="text-white/50 text-lg md:text-xl max-w-2xl mx-auto font-medium">O antes e depois de negócios que decidiram elevar seu nível de jogo com a Ideal Solutions.</p>
             </div>
   
             <div className="grid md:grid-cols-3 gap-8">
@@ -381,8 +368,8 @@ const PremiumLanding = () => {
                 initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: false }} transition={{ duration: 1.2, ease: premiumEasing }}
                 className="order-2 lg:order-1"
               >
-                <span className="inline-block px-3 py-1 bg-white/5 text-white/50 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-widest mb-6">Validação Real</span>
-                <h2 className="text-5xl md:text-8xl font-black mb-10 leading-[0.9] tracking-tighter">A Palavra de <br/>quem <span className="text-[#FFDE21]">Lidera</span></h2>
+                <span className="inline-block px-3 py-1 bg-white/5 text-white/50 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-widest mb-6">Prova Social</span>
+                <h2 className="text-5xl md:text-8xl font-black mb-10 leading-[0.9] tracking-tighter">O impacto na visão de <br/>quem <span className="text-[#FFDE21]">Lidera</span></h2>
                 <MagneticCTA text="Ver Portfólio Completo" primary={false} />
               </motion.div>
 
@@ -426,13 +413,13 @@ const PremiumLanding = () => {
                  <div className="rounded-[calc(3rem-0.375rem)] bg-[#050505] p-12 md:p-32 text-center relative overflow-hidden flex flex-col items-center">
                     
                     <span className="inline-block px-4 py-2 bg-[#FFDE21]/10 text-[#FFDE21] rounded-full text-xs font-black uppercase tracking-[0.2em] mb-10">
-                      Última Chamada
+                      Vagas Limitadas
                     </span>
                     <h2 className="text-5xl md:text-8xl font-black mb-10 tracking-tighter">
-                       Pronto para o <br/> Próximo <span className="text-[#FFDE21]">Nível?</span>
+                       Seu concorrente já está investindo em <span className="text-[#FFDE21]">design.</span>
                     </h2>
                     <p className="text-white/40 text-xl max-w-2xl mb-16 leading-relaxed">
-                       O design comum gera resultados comuns. Escolha a excelência e destaque-se no mercado premium de forma definitiva.
+                       A cada dia que você mantém um visual amador, clientes de alto valor escolhem o seu concorrente. Vamos mudar essa realidade hoje?
                     </p>
                     
                     <MagneticCTA text="Agendar Consultoria Grátis" className="text-xl px-12 py-6" />
