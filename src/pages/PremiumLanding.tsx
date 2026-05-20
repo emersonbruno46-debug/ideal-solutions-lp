@@ -209,20 +209,12 @@ const PremiumLanding = () => {
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               
               <div className="relative z-10 text-center lg:text-left">
-                <motion.div 
-                  custom={0} variants={fadeUp} initial="hidden" animate="visible"
-                  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-12 backdrop-blur-md"
-                >
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#FFDE21] animate-pulse" />
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#FFDE21]">Agência de Posicionamento Premium</span>
-                </motion.div>
-
                 <motion.h1 
                   custom={1} variants={fadeUp} initial="hidden" animate="visible"
-                  className="text-4xl sm:text-6xl md:text-8xl font-black mb-10 leading-[1.1] md:leading-[0.85] tracking-tighter flex flex-col md:block"
+                  className="text-4xl sm:text-6xl md:text-8xl font-black mb-8 md:mb-10 leading-[1.1] md:leading-[0.85] tracking-tighter mt-4 md:mt-0"
                 >
-                  <span>Sua marca posicionada para atrair</span>
-                  <span className="relative inline-block text-[#FFDE21] drop-shadow-[0_0_80px_rgba(255,222,33,0.3)]">
+                  Sua marca posicionada para atrair <br className="hidden md:block" />
+                  <span className="text-[#FFDE21] drop-shadow-[0_0_80px_rgba(255,222,33,0.3)]">
                     Clientes de Alto Valor
                   </span>
                 </motion.h1>
