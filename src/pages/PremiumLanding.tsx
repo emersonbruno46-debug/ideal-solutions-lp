@@ -34,7 +34,7 @@ const MagneticCTA = ({ text, className = "", primary = true }: { text: string, c
     } ${className}`}
   >
     {text}
-    <div className={`absolute right-1.5 top-1.5 bottom-1.5 aspect-square rounded-full flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:-translate-y-[1px] group-hover:scale-105 ${
+    <div className={`absolute right-1.5 top-0 bottom-0 my-auto h-[calc(100%-12px)] max-h-[44px] md:max-h-[48px] aspect-square rounded-full flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:scale-105 ${
       primary ? "bg-black/10" : "bg-white/10"
     }`}>
       <ArrowRight className="w-5 h-5" />
@@ -171,7 +171,7 @@ const PremiumLanding = () => {
 
                 <motion.h1 
                   custom={1} variants={fadeUp} initial="hidden" animate="visible"
-                  className="text-4xl sm:text-6xl md:text-8xl font-black mb-10 leading-[0.85] tracking-tighter"
+                  className="text-4xl sm:text-6xl md:text-8xl font-black mb-10 leading-[1.1] md:leading-[0.85] tracking-tighter"
                 >
                   Design que eleva sua marca à <br className="hidden lg:block"/>
                   <span className="relative inline-block mt-4 md:mt-2 text-[#FFDE21] drop-shadow-[0_0_80px_rgba(255,222,33,0.3)]">
@@ -451,14 +451,14 @@ const PremiumLanding = () => {
                     <span className="inline-block px-4 py-2 bg-[#FFDE21]/10 text-[#FFDE21] rounded-full text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] mb-8 lg:mb-10">
                       Vagas Limitadas
                     </span>
-                    <h2 className="text-4xl md:text-8xl font-black mb-8 lg:mb-10 tracking-tighter">
+                    <h2 className="text-3xl sm:text-4xl md:text-8xl font-black mb-8 lg:mb-10 leading-[1.1] md:leading-tight tracking-tighter">
                        Seu concorrente já está investindo em <span className="text-[#FFDE21]">design.</span>
                     </h2>
                     <p className="text-white/40 text-lg md:text-xl max-w-2xl mb-12 lg:mb-16 leading-relaxed">
                        A cada dia que você mantém um visual amador, clientes de alto valor escolhem o seu concorrente. Vamos mudar essa realidade hoje?
                     </p>
                     
-                    <MagneticCTA text="Agendar Consultoria Grátis" className="text-xl px-12 py-6" />
+                    <MagneticCTA text="Agendar Consultoria Grátis" className="text-base sm:text-xl px-8 sm:px-12 py-4 sm:py-6" />
 
                  </div>
               </motion.div>
