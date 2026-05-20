@@ -217,13 +217,21 @@ const PremiumLanding = () => {
                       {/* Yellow Flare Behind Image */}
                       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[70%] bg-[#FFDE21]/20 rounded-full blur-[100px] lg:blur-[140px] z-0 animate-[pulse_6s_ease-in-out_infinite]" />
                       
-                      <motion.img 
-                        src="/hero-image.png" 
-                        alt="Equipe Ideal Solutions" 
-                        animate={{ y: [0, -15, 0] }}
-                        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                        className="w-full max-w-[600px] xl:max-w-[900px] h-auto object-contain drop-shadow-[0_0_50px_rgba(0,0,0,0.6)] group-hover:scale-[1.02] transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] relative z-10" 
-                      />
+                      <motion.div
+                        variants={{
+                           visible: { 
+                              y: [0, -15, 0],
+                              transition: { duration: 6, repeat: Infinity, ease: "easeInOut" }
+                           }
+                        }}
+                        className="relative z-10"
+                      >
+                        <img 
+                          src="/hero-image.png" 
+                          alt="Equipe Ideal Solutions" 
+                          className="w-full max-w-[600px] xl:max-w-[900px] h-auto object-contain drop-shadow-[0_0_50px_rgba(0,0,0,0.6)] group-hover:scale-[1.02] transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]" 
+                        />
+                      </motion.div>
                       
                       {/* Floating Element over the image */}
                       <div className="absolute bottom-[25%] left-4 lg:bottom-[30%] lg:left-0 xl:bottom-[35%] xl:left-8 z-30 p-1.5 rounded-[2.5rem] bg-white/10 border border-white/20 ring-1 ring-white/10 backdrop-blur-2xl animate-[float-flare_6s_ease-in-out_infinite_alternate] hidden sm:block shadow-[0_8px_32px_rgba(255,255,255,0.1)]">
