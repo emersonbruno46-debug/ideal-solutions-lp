@@ -118,7 +118,7 @@ const PremiumLanding = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveTestimonial(prev => (prev + 1) % 3);
-    }, 6000);
+    }, 4500);
     return () => clearInterval(interval);
   }, []);
 
@@ -218,9 +218,9 @@ const PremiumLanding = () => {
       <main className="relative z-10 pt-40 pb-20">
         
         {/* Hero Z-Axis Cascade & Massive Typography */}
-        <section className="min-h-[90dvh] flex items-center justify-center pt-16 pb-20 lg:pt-24 lg:pb-32">
+        <section className="min-h-[90dvh] flex items-center justify-center pt-16 pb-0 lg:pt-24 lg:pb-32">
           <div className="container mx-auto px-4 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div className="grid lg:grid-cols-2 gap-2 lg:gap-20 items-center">
               
               <div className="relative z-10 text-center lg:text-left">
                 <motion.h1 
@@ -251,7 +251,7 @@ const PremiumLanding = () => {
               {/* Equipe / Sócio Photo */}
               <motion.div 
                 custom={4} variants={fadeUp} initial="hidden" animate="visible"
-                className="relative mt-12 lg:mt-0 lg:-translate-x-8 xl:-translate-x-16"
+                className="relative mt-2 -mb-24 lg:mb-0 lg:mt-0 lg:-translate-x-8 xl:-translate-x-16"
               >
                  <div className="relative flex justify-center items-end group w-full lg:w-[130%] xl:w-[160%] lg:-ml-[15%] xl:-ml-[30%]">
                     <div className="relative inline-block">
@@ -462,18 +462,18 @@ const PremiumLanding = () => {
         {/* Cinematic Testimonial Split */}
         <section id="depoimentos" className="py-12 lg:py-32 relative">
           <div className="container mx-auto px-4 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 items-center">
               
               <motion.div 
                 initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: false }} transition={{ duration: 1.2, ease: premiumEasing }}
-                className="order-2 lg:order-1"
+                className="mb-4 lg:mb-0"
               >
                 <span className="inline-block px-3 py-1 bg-white/5 text-white/50 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-widest mb-6">Prova Social</span>
                 <h2 className="text-4xl md:text-8xl font-black mb-10 leading-[0.9] tracking-tighter">O impacto na visão de <br className="hidden md:block"/>quem <span className="text-[#FFDE21]">Lidera</span></h2>
                 <MagneticCTA text="Ver Portfólio Completo" primary={false} />
               </motion.div>
 
-              <div className="order-1 lg:order-2 w-full max-w-xl mx-auto lg:mx-0">
+              <div className="w-full max-w-xl mx-auto lg:mx-0">
                 <div className="relative min-h-[360px] md:min-h-[380px]">
                   <AnimatePresence mode="wait">
                     <motion.div
