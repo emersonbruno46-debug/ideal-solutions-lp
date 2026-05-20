@@ -8,8 +8,7 @@ import { LogoPremium } from "@/components/premium/LogoPremium";
 
 const useAutoScroll = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const isPausedRef = useRef(false);
-  const userInteractedRef = useRef(false);
+  const activeRef = useRef(true);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -17,57 +16,43 @@ const useAutoScroll = () => {
 
     let animationFrameId: number;
     let direction = 1;
-    let exactScrollLeft = 0;
-    let lastWrittenScrollLeft = 0;
+    let pos = 0;
 
-    // Detecta scroll manual: pausa definitivamente até o elemento sair do viewport
-    const handleScroll = () => {
-      const delta = Math.abs(el.scrollLeft - lastWrittenScrollLeft);
-      if (delta > 2 && !userInteractedRef.current) {
-        userInteractedRef.current = true;
-        isPausedRef.current = true;
-      }
+    // Captura o primeiro toque ANTES dos filhos consumirem o evento
+    // Isso para o auto-scroll definitivamente e libera o scroll nativo
+    const handleTouchStart = () => {
+      activeRef.current = false;
     };
+    el.addEventListener('touchstart', handleTouchStart, { capture: true, passive: true });
 
-    // Quando o carrossel sai do viewport e volta, reseta o controle do usuário
+    // Reseta quando a seção sai completamente da tela
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) {
-          // Saiu da tela: reseta para próxima vez que aparecer
-          userInteractedRef.current = false;
-          isPausedRef.current = false;
-          exactScrollLeft = 0;
-          lastWrittenScrollLeft = 0;
-          el.scrollLeft = 0;
+          activeRef.current = true;
+          pos = 0;
           direction = 1;
+          el.scrollLeft = 0;
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0 }
     );
-
     observer.observe(el);
-    el.addEventListener('scroll', handleScroll, { passive: true });
 
-    const scroll = () => {
-      if (!isPausedRef.current && window.innerWidth < 768) {
-        exactScrollLeft += 0.5 * direction;
-        el.scrollLeft = exactScrollLeft;
-        lastWrittenScrollLeft = exactScrollLeft;
-
-        if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 1) {
-          direction = -1;
-        } else if (el.scrollLeft <= 0) {
-          direction = 1;
-        }
+    const tick = () => {
+      if (activeRef.current && window.innerWidth < 768) {
+        pos += 0.5 * direction;
+        el.scrollLeft = pos;
+        if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 1) direction = -1;
+        else if (el.scrollLeft <= 0) direction = 1;
       }
-      animationFrameId = requestAnimationFrame(scroll);
+      animationFrameId = requestAnimationFrame(tick);
     };
-
-    animationFrameId = requestAnimationFrame(scroll);
+    animationFrameId = requestAnimationFrame(tick);
 
     return () => {
       cancelAnimationFrame(animationFrameId);
-      el.removeEventListener('scroll', handleScroll);
+      el.removeEventListener('touchstart', handleTouchStart, { capture: true });
       observer.disconnect();
     };
   }, []);
