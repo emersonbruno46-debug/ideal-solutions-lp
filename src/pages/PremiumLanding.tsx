@@ -47,7 +47,7 @@ const DoubleBezelCard = ({ children, className = "", delay = 0, bentoClass = "" 
   <motion.div 
     initial={{ opacity: 0, y: 40, filter: "blur(5px)" }}
     whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-    viewport={{ once: true, margin: "-100px" }}
+    viewport={{ once: false, margin: "-100px" }}
     transition={{ duration: 1.2, delay, ease: premiumEasing }}
     className={`p-1.5 rounded-[2rem] bg-white/5 border border-white/10 ring-1 ring-black/5 ${bentoClass}`}
   >
@@ -237,7 +237,7 @@ const PremiumLanding = () => {
         </section>
 
         {/* Asymmetrical Bento Grid - Services */}
-        <section id="serviços" className="py-40">
+        <section id="serviços" className="py-24 md:py-32">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="mb-24">
               <span className="inline-block px-3 py-1 bg-[#FFDE21]/10 text-[#FFDE21] rounded-full text-[10px] font-black uppercase tracking-widest mb-6">Expertise</span>
@@ -290,7 +290,7 @@ const PremiumLanding = () => {
         </section>
 
         {/* Portfolio Section */}
-        <section id="portfólio" className="py-40 relative z-10">
+        <section id="portfólio" className="py-24 md:py-32 relative z-10">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="text-center mb-20">
               <span className="inline-block px-3 py-1 bg-white/5 text-white/50 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-widest mb-6">Projetos de Sucesso</span>
@@ -326,7 +326,7 @@ const PremiumLanding = () => {
                   key={i}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true }}
+                  viewport={{ once: false }}
                   variants={fadeUp}
                   custom={i}
                   whileHover={{ y: -10 }}
@@ -356,12 +356,12 @@ const PremiumLanding = () => {
         </section>
 
         {/* Cinematic Testimonial Split */}
-        <section id="depoimentos" className="py-40 relative">
+        <section id="depoimentos" className="py-24 md:py-32 relative">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-20 items-center">
               
               <motion.div 
-                initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 1.2, ease: premiumEasing }}
+                initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: false }} transition={{ duration: 1.2, ease: premiumEasing }}
                 className="order-2 lg:order-1"
               >
                 <span className="inline-block px-3 py-1 bg-white/5 text-white/50 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-widest mb-6">Validação Real</span>
@@ -396,12 +396,12 @@ const PremiumLanding = () => {
         </section>
 
         {/* Pricing / CTA Closing nested architectural pattern */}
-        <section id="planos" className="py-40">
+        <section id="planos" className="py-24 md:py-32">
            <div className="container mx-auto px-4 lg:px-8">
               <motion.div 
                  initial={{ opacity: 0, scale: 0.95 }}
                  whileInView={{ opacity: 1, scale: 1 }}
-                 viewport={{ once: true }}
+                 viewport={{ once: false }}
                  transition={{ duration: 1.2, ease: premiumEasing }}
                  className="relative p-1.5 rounded-[3rem] bg-gradient-to-b from-[#FFDE21]/20 to-transparent"
               >
