@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  Palette, Share2, Globe, ArrowRight, Star,
+  Palette, Share2, Globe, ArrowRight, Star, Sparkles,
   Instagram, Linkedin, Twitter, Menu, X
 } from "lucide-react";
 import { LogoPremium } from "@/components/premium/LogoPremium";
@@ -158,51 +158,79 @@ const PremiumLanding = () => {
         {/* Hero Z-Axis Cascade & Massive Typography */}
         <section className="min-h-[90dvh] flex items-center justify-center pt-24 pb-32">
           <div className="container mx-auto px-4 lg:px-8">
-            <div className="max-w-6xl mx-auto text-center relative">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               
-              <motion.div 
-                custom={0} variants={fadeUp} initial="hidden" animate="visible"
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-12 backdrop-blur-md"
-              >
-                <div className="w-1.5 h-1.5 rounded-full bg-[#FFDE21] animate-pulse" />
-                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#FFDE21]">Agência Boutique de Design</span>
-              </motion.div>
+              <div className="relative z-10 text-center lg:text-left">
+                <motion.div 
+                  custom={0} variants={fadeUp} initial="hidden" animate="visible"
+                  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-12 backdrop-blur-md"
+                >
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#FFDE21] animate-pulse" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#FFDE21]">Agência Boutique de Design</span>
+                </motion.div>
 
-              <motion.h1 
-                custom={1} variants={fadeUp} initial="hidden" animate="visible"
-                className="text-5xl sm:text-7xl md:text-9xl font-black mb-10 leading-[0.85] tracking-tighter"
-              >
-                A Essência do <br className="hidden md:block"/>
-                <span className="relative inline-block mt-4 md:mt-2 text-[#FFDE21] drop-shadow-[0_0_80px_rgba(255,222,33,0.3)]">
-                  Design Premium
-                </span>
-              </motion.h1>
+                <motion.h1 
+                  custom={1} variants={fadeUp} initial="hidden" animate="visible"
+                  className="text-5xl sm:text-7xl md:text-8xl font-black mb-10 leading-[0.85] tracking-tighter"
+                >
+                  A Essência do <br className="hidden lg:block"/>
+                  <span className="relative inline-block mt-4 md:mt-2 text-[#FFDE21] drop-shadow-[0_0_80px_rgba(255,222,33,0.3)]">
+                    Design Premium
+                  </span>
+                </motion.h1>
 
-              <motion.p 
-                custom={2} variants={fadeUp} initial="hidden" animate="visible"
-                className="text-lg md:text-2xl text-white/50 max-w-2xl mx-auto mb-16 leading-relaxed font-medium"
-              >
-                Construímos a presença digital de marcas que não aceitam o padrão. Estética cinemática, conversão e autoridade absoluta.
-              </motion.p>
+                <motion.p 
+                  custom={2} variants={fadeUp} initial="hidden" animate="visible"
+                  className="text-lg md:text-2xl text-white/50 max-w-2xl mx-auto lg:mx-0 mb-16 leading-relaxed font-medium"
+                >
+                  Construímos a presença digital de marcas que não aceitam o padrão. Estética cinemática, conversão e autoridade absoluta.
+                </motion.p>
 
-              <motion.div 
-                custom={3} variants={fadeUp} initial="hidden" animate="visible"
-                className="flex flex-col sm:flex-row items-center justify-center gap-8"
-              >
-                <MagneticCTA text="Iniciar meu Projeto" />
-                <div className="flex items-center gap-4 text-left">
-                  <div className="flex -space-x-4">
-                    {[1, 2, 3].map(i => (
-                      <div key={i} className="w-12 h-12 rounded-full border-[3px] border-[#050505] overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
-                        <img src={`https://i.pravatar.cc/150?img=${i+20}`} alt="client" />
-                      </div>
-                    ))}
+                <motion.div 
+                  custom={3} variants={fadeUp} initial="hidden" animate="visible"
+                  className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-8"
+                >
+                  <MagneticCTA text="Iniciar meu Projeto" />
+                  <div className="flex items-center gap-4 text-left">
+                    <div className="flex -space-x-4">
+                      {[1, 2, 3].map(i => (
+                        <div key={i} className="w-12 h-12 rounded-full border-[3px] border-[#050505] overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
+                          <img src={`https://i.pravatar.cc/150?img=${i+20}`} alt="client" />
+                        </div>
+                      ))}
+                    </div>
+                    <div>
+                      <p className="font-black text-white text-lg leading-none">+200</p>
+                      <p className="text-white/30 text-[9px] uppercase font-bold tracking-widest mt-1">Marcas</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-black text-white text-lg leading-none">+200</p>
-                    <p className="text-white/30 text-[9px] uppercase font-bold tracking-widest mt-1">Marcas de Luxo</p>
-                  </div>
-                </div>
+                </motion.div>
+              </div>
+
+              {/* Equipe / Sócio Photo */}
+              <motion.div 
+                custom={4} variants={fadeUp} initial="hidden" animate="visible"
+                className="relative mt-12 lg:mt-0 lg:scale-110 xl:scale-125 origin-center lg:translate-x-10"
+              >
+                 <div className="p-1.5 rounded-[3rem] bg-white/5 border border-white/10 ring-1 ring-black/5 rotate-2 hover:rotate-0 transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] shadow-2xl">
+                   <div className="rounded-[calc(3rem-0.375rem)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] bg-[#050505] relative">
+                      <img src="/hero-image.png" alt="Equipe Ideal Solutions" className="w-full h-auto object-cover opacity-90" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-80" />
+                   </div>
+                 </div>
+                 
+                 {/* Floating Element */}
+                 <div className="absolute -bottom-6 -left-6 z-20 p-1.5 rounded-[2rem] bg-white/5 border border-white/10 ring-1 ring-black/5 backdrop-blur-xl animate-[float-flare_6s_ease-in-out_infinite_alternate] hidden md:block">
+                   <div className="rounded-[calc(2rem-0.375rem)] bg-[#050505]/80 p-5 flex items-center gap-4">
+                     <div className="w-12 h-12 bg-[#FFDE21] rounded-2xl flex items-center justify-center">
+                        <Sparkles className="text-black w-6 h-6" />
+                     </div>
+                     <div>
+                        <p className="text-xs text-white/40 uppercase font-black tracking-widest leading-none mb-1">Estratégia</p>
+                        <p className="text-lg font-black text-white">Criativa</p>
+                     </div>
+                   </div>
+                 </div>
               </motion.div>
 
             </div>
@@ -279,7 +307,8 @@ const PremiumLanding = () => {
               <div className="space-y-8 order-1 lg:order-2">
                 {[
                   { name: "Gabriela Gomes", role: "CEO, Gabi Cosméticos", text: "A Ideal Solutions criou toda a nossa identidade. Ficou moderno, com cara de luxo e passamos muita credibilidade agora." },
-                  { name: "Jonas Santos", role: "CEO, Chop's Burger", text: "Estamos extremamente satisfeitos. O resultado visual impressiona nossos clientes todos os dias." }
+                  { name: "Jonas Santos", role: "CEO, Chop's Burger", text: "Nós da Chop's Burger estamos muito satisfeitos com os resultados visuais e indicamos a Ideal Solutions para todos!" },
+                  { name: "Wells Josue", role: "Engenheiro Especialista", text: "A estratégia mudou nossa presença online. Antes éramos invisíveis, agora temos engajamento e crescimento imediato. Resultado real." }
                 ].map((t, i) => (
                   <DoubleBezelCard key={i} delay={0.2 * i}>
                     <Star className="w-8 h-8 text-[#FFDE21] mb-8" />
