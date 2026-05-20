@@ -97,15 +97,30 @@ const DoubleBezelCard = ({ children, className = "", delay = 0, bentoClass = "" 
     transition={{ duration: 1.2, delay, ease: premiumEasing }}
     className={`p-1.5 rounded-[2rem] bg-white/5 border border-white/10 ring-1 ring-black/5 ${bentoClass}`}
   >
-    <div className={`h-full rounded-[calc(2rem-0.375rem)] bg-[#050505] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] p-8 ${className}`}>
+    <div className={`h-full rounded-[calc(2rem-0.375rem)] bg-[#050505] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] p-6 md:p-8 ${className}`}>
       {children}
     </div>
   </motion.div>
 );
 
+const testimonialsData = [
+  { name: "Gabriela Gomes", role: "CEO, Gabi Cosméticos", text: "Eu tinha muito medo de mudar a marca e perder a essência. Mas vocês conseguiram deixar exatamente com a cara de 'produto importado' que eu queria. Nossas clientes perceberam a mudança no mesmo dia." },
+  { name: "Jonas Santos", role: "CEO, Chop's Burger", text: "Sendo bem sincero, eu achava que era frescura esse negócio de branding. Mas depois que a Ideal refez nosso visual, paramos de brigar por preço. A percepção de valor do nosso burger foi lá pra cima. O trabalho se pagou muito rápido." },
+  { name: "Wellis Josue", role: "Engenheiro Especialista", text: "O mercado de engenharia é muito engessado, e eu queria me destacar. O posicionamento de vocês quebrou esse padrão. Hoje recebo orçamentos de clientes que já chegam confiando no meu trabalho só pelo nível do meu visual." }
+];
+
 const PremiumLanding = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
   const processScroll = useAutoScroll();
+  const portfolioScroll = useAutoScroll();
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTestimonial(prev => (prev + 1) % 3);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
   const portfolioScroll = useAutoScroll();
 
   // Prevent scroll when menu is open
@@ -285,7 +300,7 @@ const PremiumLanding = () => {
         </section>
 
         {/* Asymmetrical Bento Grid - Services */}
-        <section id="serviços" className="py-16 lg:py-32">
+        <section id="serviços" className="py-12 lg:py-32">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="mb-24">
               <span className="inline-block px-3 py-1 bg-[#FFDE21]/10 text-[#FFDE21] rounded-full text-[10px] font-black uppercase tracking-widest mb-6">Arquitetura de Marcas</span>
@@ -338,7 +353,7 @@ const PremiumLanding = () => {
         </section>
 
         {/* Process Section */}
-        <section id="processo" className="py-16 lg:py-32 relative z-10">
+        <section id="processo" className="py-12 lg:py-32 relative z-10">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="mb-20 text-center lg:text-left">
               <span className="inline-block px-3 py-1 bg-[#FFDE21]/10 text-[#FFDE21] rounded-full text-[10px] font-black uppercase tracking-widest mb-6">Metodologia</span>
@@ -376,7 +391,7 @@ const PremiumLanding = () => {
         </section>
 
         {/* Portfolio Section */}
-        <section id="portfólio" className="py-16 lg:py-32 relative z-10">
+        <section id="portfólio" className="py-12 lg:py-32 relative z-10">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="text-center mb-20">
               <span className="inline-block px-3 py-1 bg-white/5 text-white/50 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-widest mb-6">Cases de Sucesso</span>
@@ -446,7 +461,7 @@ const PremiumLanding = () => {
         </section>
 
         {/* Cinematic Testimonial Split */}
-        <section id="depoimentos" className="py-16 lg:py-32 relative">
+        <section id="depoimentos" className="py-12 lg:py-32 relative">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               
@@ -459,26 +474,45 @@ const PremiumLanding = () => {
                 <MagneticCTA text="Ver Portfólio Completo" primary={false} />
               </motion.div>
 
-              <div className="space-y-8 order-1 lg:order-2">
-                {[
-                  { name: "Gabriela Gomes", role: "CEO, Gabi Cosméticos", text: "Eu tinha muito medo de mudar a marca e perder a essência. Mas vocês conseguiram deixar exatamente com a cara de 'produto importado' que eu queria. Nossas clientes perceberam a mudança no mesmo dia." },
-                  { name: "Jonas Santos", role: "CEO, Chop's Burger", text: "Sendo bem sincero, eu achava que era frescura esse negócio de branding. Mas depois que a Ideal refez nosso visual, paramos de brigar por preço. A percepção de valor do nosso burger foi lá pra cima. O trabalho se pagou muito rápido." },
-                  { name: "Wellis Josue", role: "Engenheiro Especialista", text: "O mercado de engenharia é muito engessado, e eu queria me destacar. O posicionamento de vocês quebrou esse padrão. Hoje recebo orçamentos de clientes que já chegam confiando no meu trabalho só pelo nível do meu visual." }
-                ].map((t, i) => (
-                  <DoubleBezelCard key={i} delay={0.2 * i}>
-                    <Star className="w-8 h-8 text-[#FFDE21] mb-8" />
-                    <p className="text-lg md:text-2xl text-white/70 leading-relaxed font-medium mb-10">"{t.text}"</p>
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-full border border-white/10 overflow-hidden bg-white/5 flex items-center justify-center">
-                         <img src={`/testimonial-${i + 1}.png`} alt={t.name} className="w-full h-full object-cover" onError={(e) => (e.currentTarget.style.display = 'none')} />
-                      </div>
-                      <div>
-                        <h4 className="font-black text-white uppercase tracking-widest text-sm">{t.name}</h4>
-                        <p className="text-[#FFDE21] text-[10px] font-bold tracking-[0.2em] mt-1">{t.role}</p>
-                      </div>
-                    </div>
-                  </DoubleBezelCard>
-                ))}
+              <div className="order-1 lg:order-2 w-full max-w-xl mx-auto lg:mx-0">
+                <div className="relative min-h-[360px] md:min-h-[380px]">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeTestimonial}
+                      initial={{ opacity: 0, y: 15, filter: "blur(4px)" }}
+                      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                      exit={{ opacity: 0, y: -15, filter: "blur(4px)" }}
+                      transition={{ duration: 0.8, ease: premiumEasing }}
+                      className="absolute inset-0"
+                    >
+                      <DoubleBezelCard>
+                        <Star className="w-6 h-6 md:w-8 md:h-8 text-[#FFDE21] mb-6 md:mb-8" />
+                        <p className="text-base md:text-xl text-white/70 leading-relaxed font-medium mb-8 md:mb-10">"{testimonialsData[activeTestimonial].text}"</p>
+                        <div className="flex items-center gap-4">
+                          <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/10 overflow-hidden bg-white/5 flex items-center justify-center shrink-0">
+                             <img src={`/testimonial-${activeTestimonial + 1}.png`} alt={testimonialsData[activeTestimonial].name} className="w-full h-full object-cover" onError={(e) => (e.currentTarget.style.display = 'none')} />
+                          </div>
+                          <div>
+                            <h4 className="font-black text-white uppercase tracking-widest text-xs md:text-sm">{testimonialsData[activeTestimonial].name}</h4>
+                            <p className="text-[#FFDE21] text-[9px] md:text-[10px] font-bold tracking-[0.2em] mt-1">{testimonialsData[activeTestimonial].role}</p>
+                          </div>
+                        </div>
+                      </DoubleBezelCard>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+                
+                {/* Dots Indicator */}
+                <div className="flex gap-2 mt-4 justify-center lg:justify-start">
+                  {[0, 1, 2].map(i => (
+                    <button 
+                      key={i}
+                      onClick={() => setActiveTestimonial(i)}
+                      className={`h-1.5 rounded-full transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] ${activeTestimonial === i ? 'w-8 bg-[#FFDE21]' : 'w-2 bg-white/20'}`}
+                      aria-label={`Ver depoimento ${i + 1}`}
+                    />
+                  ))}
+                </div>
               </div>
 
             </div>
