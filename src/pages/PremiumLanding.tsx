@@ -275,18 +275,18 @@ const PremiumLanding = () => {
                       </motion.div>
                       
                       {/* Floating Element over the image */}
-                      <div className="absolute bottom-[20%] -left-2 sm:bottom-[25%] sm:left-4 lg:bottom-[30%] lg:left-0 xl:bottom-[35%] xl:left-8 z-30 p-1.5 rounded-[2.5rem] bg-white/10 border border-white/20 ring-1 ring-white/10 backdrop-blur-2xl animate-[float-flare_6s_ease-in-out_infinite_alternate] shadow-[0_8px_32px_rgba(255,255,255,0.1)] scale-90 sm:scale-100">
-                        <div className="rounded-[calc(2.5rem-0.375rem)] bg-white/5 p-4 sm:p-5 flex items-center gap-3 sm:gap-4">
-                          <div className="relative w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-[#FFDE21] to-yellow-600 rounded-2xl flex items-center justify-center shadow-lg shadow-yellow-500/30">
-                             <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                      <div className="absolute bottom-[20%] -left-2 sm:bottom-[25%] sm:left-4 lg:bottom-[30%] lg:left-0 xl:bottom-[35%] xl:left-8 z-30 p-1 sm:p-1.5 rounded-[2rem] sm:rounded-[2.5rem] bg-white/10 border border-white/20 ring-1 ring-white/10 backdrop-blur-2xl shadow-[0_8px_32px_rgba(255,255,255,0.1)] scale-75 sm:scale-100 origin-left animate-[float-flare-sm_8s_ease-in-out_infinite_alternate] sm:animate-[float-flare_6s_ease-in-out_infinite_alternate]">
+                        <div className="rounded-[calc(2rem-0.375rem)] sm:rounded-[calc(2.5rem-0.375rem)] bg-white/5 p-3 sm:p-4 flex items-center gap-2 sm:gap-3">
+                          <div className="relative w-9 h-9 sm:w-12 sm:h-12 bg-gradient-to-br from-[#FFDE21] to-yellow-600 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg shadow-yellow-500/30">
+                             <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5 sm:h-3 sm:w-3">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500 border border-[#050505]"></span>
+                                <span className="relative inline-flex rounded-full h-2.5 w-2.5 sm:h-3 sm:w-3 bg-red-500 border border-[#050505]"></span>
                              </span>
-                             <span className="font-black text-black text-lg sm:text-xl">2</span>
+                             <span className="font-black text-black text-base sm:text-xl">2</span>
                           </div>
                           <div className="text-left">
-                             <p className="text-[9px] sm:text-[10px] text-white/70 uppercase font-black tracking-widest leading-none mb-1 drop-shadow-md">Para este mês</p>
-                             <p className="text-base sm:text-lg font-black text-white drop-shadow-lg leading-none">Vagas Restantes</p>
+                             <p className="text-[8px] sm:text-[10px] text-white/70 uppercase font-black tracking-widest leading-none mb-0.5 sm:mb-1">Para este mês</p>
+                             <p className="text-sm sm:text-lg font-black text-white leading-none">Vagas Restantes</p>
                           </div>
                         </div>
                       </div>
@@ -398,7 +398,7 @@ const PremiumLanding = () => {
               <p className="text-white/50 text-lg md:text-xl max-w-2xl mx-auto font-medium">O antes e depois de negócios que decidiram elevar seu nível de jogo com a Ideal Solutions.</p>
             </div>
   
-            <div {...portfolioScroll} className="flex overflow-x-auto hide-scrollbar gap-8 pb-8 -mx-4 px-4 md:grid md:grid-cols-3 md:pb-0 md:mx-0 md:px-0">
+            <div {...portfolioScroll} className="flex overflow-x-auto hide-scrollbar gap-8 pb-8 -mx-6 px-6 md:grid md:grid-cols-3 md:pb-0 md:mx-0 md:px-0">
               {[
                 { 
                   label: "Engenharia Civil", 
