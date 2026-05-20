@@ -171,10 +171,10 @@ const PremiumLanding = () => {
 
                 <motion.h1 
                   custom={1} variants={fadeUp} initial="hidden" animate="visible"
-                  className="text-4xl sm:text-6xl md:text-8xl font-black mb-10 leading-[1.1] md:leading-[0.85] tracking-tighter"
+                  className="text-4xl sm:text-6xl md:text-8xl font-black mb-10 leading-[1.1] md:leading-[0.85] tracking-tighter flex flex-col md:block"
                 >
-                  Design que eleva sua marca à <br className="hidden lg:block"/>
-                  <span className="relative inline-block mt-4 md:mt-2 text-[#FFDE21] drop-shadow-[0_0_80px_rgba(255,222,33,0.3)]">
+                  <span>Design que eleva sua marca à</span>
+                  <span className="relative inline-block text-[#FFDE21] drop-shadow-[0_0_80px_rgba(255,222,33,0.3)]">
                     Categoria de Luxo
                   </span>
                 </motion.h1>
@@ -301,7 +301,7 @@ const PremiumLanding = () => {
               <h2 className="text-3xl md:text-7xl font-black uppercase tracking-tighter text-white">Nosso <span className="text-[#FFDE21]">Processo</span></h2>
             </div>
             
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-6 pb-8 -mx-4 px-4 md:grid md:grid-cols-3 md:pb-0 md:mx-0 md:px-0">
               {[
                 {
                   step: "01",
@@ -319,11 +319,13 @@ const PremiumLanding = () => {
                   desc: "Os toques finais que diferenciam o comum do luxo. Entregamos a sua marca pronta para dominar e liderar o mercado."
                 }
               ].map((s, i) => (
-                <DoubleBezelCard key={i} delay={0.2 * i}>
-                  <div className="text-6xl font-black text-white/5 mb-8 tracking-tighter">{s.step}</div>
-                  <h3 className="text-2xl md:text-3xl font-black mb-4 uppercase tracking-tighter">{s.title}</h3>
-                  <p className="text-white/50 text-base leading-relaxed">{s.desc}</p>
-                </DoubleBezelCard>
+                <div key={i} className="snap-center shrink-0 w-[85vw] md:w-auto h-full">
+                  <DoubleBezelCard delay={0.2 * i} bentoClass="h-full">
+                    <div className="text-6xl font-black text-white/5 mb-8 tracking-tighter">{s.step}</div>
+                    <h3 className="text-2xl md:text-3xl font-black mb-4 uppercase tracking-tighter">{s.title}</h3>
+                    <p className="text-white/50 text-base leading-relaxed">{s.desc}</p>
+                  </DoubleBezelCard>
+                </div>
               ))}
             </div>
           </div>
@@ -338,7 +340,7 @@ const PremiumLanding = () => {
               <p className="text-white/50 text-lg md:text-xl max-w-2xl mx-auto font-medium">O antes e depois de negócios que decidiram elevar seu nível de jogo com a Ideal Solutions.</p>
             </div>
   
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-8 pb-8 -mx-4 px-4 md:grid md:grid-cols-3 md:pb-0 md:mx-0 md:px-0">
               {[
                 { 
                   label: "Engenharia Civil", 
@@ -362,8 +364,8 @@ const PremiumLanding = () => {
                   desc: "Marca elegante e memorável com foco no público feminino de alto padrão."
                 }
               ].map((p, i) => (
+                <div key={i} className="snap-center shrink-0 w-[85vw] md:w-auto h-full">
                 <motion.div 
-                  key={i}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: false }}
@@ -390,6 +392,7 @@ const PremiumLanding = () => {
                     </p>
                   </div>
                 </motion.div>
+                </div>
               ))}
             </div>
           </div>
