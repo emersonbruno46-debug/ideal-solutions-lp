@@ -221,9 +221,9 @@ const PremiumLanding = () => {
                   custom={1} variants={fadeUp} initial="hidden" animate="visible"
                   className="text-4xl sm:text-6xl md:text-8xl font-black mb-10 leading-[1.1] md:leading-[0.85] tracking-tighter flex flex-col md:block"
                 >
-                  <span>Design que eleva sua marca à</span>
+                  <span>Sua marca posicionada para atrair</span>
                   <span className="relative inline-block text-[#FFDE21] drop-shadow-[0_0_80px_rgba(255,222,33,0.3)]">
-                    Categoria de Luxo
+                    Clientes de Alto Valor
                   </span>
                 </motion.h1>
 
@@ -269,14 +269,18 @@ const PremiumLanding = () => {
                       </motion.div>
                       
                       {/* Floating Element over the image */}
-                      <div className="absolute bottom-[10%] left-0 right-0 mx-auto w-max sm:mx-0 sm:right-auto sm:bottom-[25%] sm:left-4 lg:bottom-[30%] lg:left-0 xl:bottom-[35%] xl:left-8 z-30 p-1.5 rounded-[2.5rem] bg-white/10 border border-white/20 ring-1 ring-white/10 backdrop-blur-2xl animate-[float-flare_6s_ease-in-out_infinite_alternate] shadow-[0_8px_32px_rgba(255,255,255,0.1)] scale-90 sm:scale-100">
-                        <div className="rounded-[calc(2.5rem-0.375rem)] bg-white/5 p-5 flex items-center gap-4">
-                          <div className="w-12 h-12 bg-gradient-to-br from-[#FFDE21] to-yellow-600 rounded-2xl flex items-center justify-center shadow-lg shadow-yellow-500/30">
-                             <Gem className="text-black w-6 h-6" />
+                      <div className="absolute bottom-[20%] -left-2 sm:bottom-[25%] sm:left-4 lg:bottom-[30%] lg:left-0 xl:bottom-[35%] xl:left-8 z-30 p-1.5 rounded-[2.5rem] bg-white/10 border border-white/20 ring-1 ring-white/10 backdrop-blur-2xl animate-[float-flare_6s_ease-in-out_infinite_alternate] shadow-[0_8px_32px_rgba(255,255,255,0.1)] scale-90 sm:scale-100">
+                        <div className="rounded-[calc(2.5rem-0.375rem)] bg-white/5 p-4 sm:p-5 flex items-center gap-3 sm:gap-4">
+                          <div className="relative w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-[#FFDE21] to-yellow-600 rounded-2xl flex items-center justify-center shadow-lg shadow-yellow-500/30">
+                             <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500 border border-[#050505]"></span>
+                             </span>
+                             <span className="font-black text-black text-lg sm:text-xl">2</span>
                           </div>
-                          <div>
-                             <p className="text-xs text-white/70 uppercase font-black tracking-widest leading-none mb-1 drop-shadow-md">Estratégia</p>
-                             <p className="text-lg font-black text-white drop-shadow-lg">Premium</p>
+                          <div className="text-left">
+                             <p className="text-[9px] sm:text-[10px] text-white/70 uppercase font-black tracking-widest leading-none mb-1 drop-shadow-md">Para este mês</p>
+                             <p className="text-base sm:text-lg font-black text-white drop-shadow-lg leading-none">Vagas Restantes</p>
                           </div>
                         </div>
                       </div>
