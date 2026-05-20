@@ -121,7 +121,6 @@ const PremiumLanding = () => {
     }, 6000);
     return () => clearInterval(interval);
   }, []);
-  const portfolioScroll = useAutoScroll();
 
   // Prevent scroll when menu is open
   useEffect(() => {
