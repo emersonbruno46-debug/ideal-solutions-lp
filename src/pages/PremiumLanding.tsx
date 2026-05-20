@@ -1,10 +1,45 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Palette, Share2, Globe, ArrowRight, Star, Sparkles, Gem,
   Instagram, Linkedin, Twitter, Menu, X
 } from "lucide-react";
 import { LogoPremium } from "@/components/premium/LogoPremium";
+
+const useAutoScroll = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    let animationFrameId: number;
+    let direction = 1;
+
+    const scroll = () => {
+      if (scrollRef.current && !isPaused && window.innerWidth < 768) {
+        scrollRef.current.scrollLeft += 0.5 * direction;
+        
+        if (scrollRef.current.scrollLeft + scrollRef.current.clientWidth >= scrollRef.current.scrollWidth - 1) {
+          direction = -1;
+        } else if (scrollRef.current.scrollLeft <= 0) {
+          direction = 1;
+        }
+      }
+      animationFrameId = requestAnimationFrame(scroll);
+    };
+
+    animationFrameId = requestAnimationFrame(scroll);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isPaused]);
+
+  return {
+    ref: scrollRef,
+    onMouseEnter: () => setIsPaused(true),
+    onMouseLeave: () => setIsPaused(false),
+    onTouchStart: () => setIsPaused(true),
+    onTouchEnd: () => setIsPaused(false),
+    onTouchMove: () => setIsPaused(true), // Garante que segurar pare o scroll
+  };
+};
 
 // Custom easing for cinematic motion simulating mass and spring physics
 const premiumEasing = [0.32, 0.72, 0, 1];
@@ -59,6 +94,8 @@ const DoubleBezelCard = ({ children, className = "", delay = 0, bentoClass = "" 
 
 const PremiumLanding = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const processScroll = useAutoScroll();
+  const portfolioScroll = useAutoScroll();
 
   // Prevent scroll when menu is open
   useEffect(() => {
@@ -301,7 +338,7 @@ const PremiumLanding = () => {
               <h2 className="text-3xl md:text-7xl font-black uppercase tracking-tighter text-white">Nosso <span className="text-[#FFDE21]">Processo</span></h2>
             </div>
             
-            <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-6 pb-8 -mx-4 px-4 md:grid md:grid-cols-3 md:pb-0 md:mx-0 md:px-0">
+            <div {...processScroll} className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-6 pb-8 -mx-4 px-4 md:grid md:grid-cols-3 md:pb-0 md:mx-0 md:px-0">
               {[
                 {
                   step: "01",
@@ -340,7 +377,7 @@ const PremiumLanding = () => {
               <p className="text-white/50 text-lg md:text-xl max-w-2xl mx-auto font-medium">O antes e depois de negócios que decidiram elevar seu nível de jogo com a Ideal Solutions.</p>
             </div>
   
-            <div className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-8 pb-8 -mx-4 px-4 md:grid md:grid-cols-3 md:pb-0 md:mx-0 md:px-0">
+            <div {...portfolioScroll} className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-8 pb-8 -mx-4 px-4 md:grid md:grid-cols-3 md:pb-0 md:mx-0 md:px-0">
               {[
                 { 
                   label: "Engenharia Civil", 
