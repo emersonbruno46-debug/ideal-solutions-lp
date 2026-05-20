@@ -289,6 +289,72 @@ const PremiumLanding = () => {
           </div>
         </section>
 
+        {/* Portfolio Section */}
+        <section id="portfólio" className="py-40 relative z-10">
+          <div className="container mx-auto px-4 lg:px-8">
+            <div className="text-center mb-20">
+              <span className="inline-block px-3 py-1 bg-white/5 text-white/50 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-widest mb-6">Projetos de Sucesso</span>
+              <h2 className="text-4xl sm:text-5xl md:text-7xl font-black mb-6 text-white uppercase tracking-tighter">Impacto em <span className="text-[#FFDE21]">Números</span></h2>
+              <p className="text-white/50 text-lg md:text-xl max-w-2xl mx-auto font-medium">Projetos que elevaram marcas ao próximo nível de autoridade e reconhecimento.</p>
+            </div>
+  
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                { 
+                  label: "Engenharia Civil", 
+                  title: "Conteúdo Estratégico", 
+                  tag: "WELIS",
+                  img: "/portfolio-welis.png",
+                  desc: "Posicionamento visual e autoridade no Instagram para engenheiro especialista."
+                },
+                { 
+                  label: "Fast Food Urbano", 
+                  title: "Identidade Jovem", 
+                  tag: "CHOP'S",
+                  img: "/portfolio-chops.jpg",
+                  desc: "Marca impactante e memorável para atrair público jovem do segmento food."
+                },
+                { 
+                  label: "Beleza & Bem-estar", 
+                  title: "Design Sofisticado", 
+                  tag: "GABI",
+                  img: "/portfolio-gabi.png",
+                  desc: "Marca elegante e memorável com foco no público feminino de alto padrão."
+                }
+              ].map((p, i) => (
+                <motion.div 
+                  key={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeUp}
+                  custom={i}
+                  whileHover={{ y: -10 }}
+                  className="group relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border border-white/10 bg-[#050505] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] cursor-pointer"
+                >
+                  <img 
+                    src={p.img} 
+                    alt={p.title} 
+                    className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-70 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90" />
+                  
+                  <div className="absolute bottom-8 left-8 right-8">
+                    <span className="inline-block px-3 py-1 bg-[#FFDE21] text-black rounded-full text-[10px] font-black uppercase tracking-widest mb-4">
+                      {p.tag}
+                    </span>
+                    <p className="text-white/40 text-xs font-black uppercase tracking-[0.2em] mb-1">{p.label}</p>
+                    <h4 className="text-2xl font-black text-white uppercase tracking-tight mb-3">{p.title}</h4>
+                    <p className="text-white/60 text-sm leading-relaxed font-medium opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+                      {p.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Cinematic Testimonial Split */}
         <section id="depoimentos" className="py-40 relative">
           <div className="container mx-auto px-4 lg:px-8">
