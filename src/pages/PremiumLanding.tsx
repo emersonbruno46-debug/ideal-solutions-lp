@@ -212,11 +212,8 @@ const PremiumLanding = () => {
                 custom={4} variants={fadeUp} initial="hidden" animate="visible"
                 className="relative mt-12 lg:mt-0 lg:scale-110 xl:scale-125 origin-center lg:translate-x-10"
               >
-                 <div className="p-1.5 rounded-[3rem] bg-white/5 border border-white/10 ring-1 ring-black/5 rotate-2 hover:rotate-0 transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] shadow-2xl">
-                   <div className="rounded-[calc(3rem-0.375rem)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] bg-[#050505] relative">
-                      <img src="/hero-image.png" alt="Equipe Ideal Solutions" className="w-full h-auto object-cover opacity-90" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-80" />
-                   </div>
+                 <div className="relative flex justify-center items-center group">
+                    <img src="/hero-image.png" alt="Equipe Ideal Solutions" className="w-full max-w-[500px] xl:max-w-[600px] h-auto object-contain drop-shadow-[0_0_40px_rgba(0,0,0,0.6)] group-hover:-translate-y-2 transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] relative z-10" />
                  </div>
                  
                  {/* Floating Element */}
