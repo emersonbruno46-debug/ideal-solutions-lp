@@ -13,10 +13,21 @@ const useAutoScroll = () => {
   useEffect(() => {
     let animationFrameId: number;
     let direction = 1;
+    let exactScrollLeft: number | null = null;
 
     const scroll = () => {
       if (scrollRef.current && !isPaused && window.innerWidth < 768) {
-        scrollRef.current.scrollLeft += 0.5 * direction;
+        if (exactScrollLeft === null) {
+          exactScrollLeft = scrollRef.current.scrollLeft;
+        }
+
+        // Se o usuário deslizar com o dedo, atualizamos a referência exata
+        if (Math.abs(exactScrollLeft - scrollRef.current.scrollLeft) > 2) {
+          exactScrollLeft = scrollRef.current.scrollLeft;
+        }
+
+        exactScrollLeft += 0.5 * direction;
+        scrollRef.current.scrollLeft = exactScrollLeft;
         
         if (scrollRef.current.scrollLeft + scrollRef.current.clientWidth >= scrollRef.current.scrollWidth - 1) {
           direction = -1;
