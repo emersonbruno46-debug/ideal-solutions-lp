@@ -446,20 +446,16 @@ const PremiumLanding = () => {
                 }
               ].map((p, i) => (
                 <div key={i} className="shrink-0 w-[85vw] md:w-auto h-full">
-                <motion.div 
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: false }}
-                  variants={fadeUp}
-                  custom={i}
-                  whileHover={{ y: -10 }}
-                  className="group flex flex-col rounded-[2.5rem] overflow-hidden border border-white/10 bg-[#050505] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] cursor-pointer h-full"
+                <div
+                  className="group flex flex-col rounded-[2.5rem] overflow-hidden border border-white/10 bg-[#050505] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] cursor-pointer h-full transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] md:hover:-translate-y-2.5"
+                  style={{ touchAction: 'pan-x' }}
                 >
                   <div className="relative aspect-[4/3] w-full overflow-hidden bg-white/5">
                     <img 
                       src={p.img} 
                       alt={p.title} 
                       className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-110"
+                      draggable={false}
                     />
                   </div>
                   
@@ -475,7 +471,7 @@ const PremiumLanding = () => {
                       {p.desc}
                     </p>
                   </div>
-                </motion.div>
+                </div>
                 </div>
               ))}
             </div>
