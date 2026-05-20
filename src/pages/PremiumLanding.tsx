@@ -213,20 +213,22 @@ const PremiumLanding = () => {
                 className="relative mt-12 lg:mt-0 lg:-translate-x-8 xl:-translate-x-16"
               >
                  <div className="relative flex justify-center items-end group w-full lg:w-[130%] xl:w-[160%] lg:-ml-[15%] xl:-ml-[30%]">
-                    <img src="/hero-image.png" alt="Equipe Ideal Solutions" className="w-full max-w-[600px] xl:max-w-[900px] h-auto object-contain drop-shadow-[0_0_50px_rgba(0,0,0,0.6)] group-hover:-translate-y-2 transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] relative z-10" />
-                 </div>
-                 
-                 {/* Floating Element */}
-                 <div className="absolute bottom-4 -left-4 md:bottom-20 md:-left-12 z-30 p-1.5 rounded-[2rem] bg-white/5 border border-white/10 ring-1 ring-black/5 backdrop-blur-xl animate-[float-flare_6s_ease-in-out_infinite_alternate] hidden md:block">
-                   <div className="rounded-[calc(2rem-0.375rem)] bg-[#050505]/80 p-5 flex items-center gap-4">
-                     <div className="w-12 h-12 bg-[#FFDE21] rounded-2xl flex items-center justify-center">
-                        <Sparkles className="text-black w-6 h-6" />
-                     </div>
-                     <div>
-                        <p className="text-xs text-white/40 uppercase font-black tracking-widest leading-none mb-1">Estratégia</p>
-                        <p className="text-lg font-black text-white">Criativa</p>
-                     </div>
-                   </div>
+                    <div className="relative inline-block">
+                      <img src="/hero-image.png" alt="Equipe Ideal Solutions" className="w-full max-w-[600px] xl:max-w-[900px] h-auto object-contain drop-shadow-[0_0_50px_rgba(0,0,0,0.6)] group-hover:-translate-y-2 transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] relative z-10" />
+                      
+                      {/* Floating Element over the image */}
+                      <div className="absolute bottom-6 -left-2 sm:bottom-10 sm:-left-6 lg:bottom-16 lg:-left-6 xl:bottom-20 xl:-left-8 z-30 p-1.5 rounded-[2rem] bg-white/5 border border-white/10 ring-1 ring-black/5 backdrop-blur-xl animate-[float-flare_6s_ease-in-out_infinite_alternate] hidden sm:block">
+                        <div className="rounded-[calc(2rem-0.375rem)] bg-[#050505]/80 p-5 flex items-center gap-4">
+                          <div className="w-12 h-12 bg-[#FFDE21] rounded-2xl flex items-center justify-center">
+                             <Sparkles className="text-black w-6 h-6" />
+                          </div>
+                          <div>
+                             <p className="text-xs text-white/40 uppercase font-black tracking-widest leading-none mb-1">Estratégia</p>
+                             <p className="text-lg font-black text-white">Criativa</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                  </div>
               </motion.div>
 
