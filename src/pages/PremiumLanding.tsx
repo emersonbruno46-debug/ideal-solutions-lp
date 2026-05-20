@@ -9,7 +9,7 @@ import { LogoPremium } from "@/components/premium/LogoPremium";
 const useAutoScroll = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const isPausedRef = useRef(false);
-  const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const userInteractedRef = useRef(false);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -20,21 +20,32 @@ const useAutoScroll = () => {
     let exactScrollLeft = 0;
     let lastWrittenScrollLeft = 0;
 
-    // Detecta scroll manual pelo evento nativo (mais confiável que touch events)
+    // Detecta scroll manual: pausa definitivamente até o elemento sair do viewport
     const handleScroll = () => {
       const delta = Math.abs(el.scrollLeft - lastWrittenScrollLeft);
-      // Se o delta for maior que 2px, é o usuário arrastando (não o auto-scroll)
-      if (delta > 2) {
+      if (delta > 2 && !userInteractedRef.current) {
+        userInteractedRef.current = true;
         isPausedRef.current = true;
-        exactScrollLeft = el.scrollLeft;
-        if (resumeTimer.current) clearTimeout(resumeTimer.current);
-        resumeTimer.current = setTimeout(() => {
-          isPausedRef.current = false;
-          lastWrittenScrollLeft = el.scrollLeft;
-        }, 2000);
       }
     };
 
+    // Quando o carrossel sai do viewport e volta, reseta o controle do usuário
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) {
+          // Saiu da tela: reseta para próxima vez que aparecer
+          userInteractedRef.current = false;
+          isPausedRef.current = false;
+          exactScrollLeft = 0;
+          lastWrittenScrollLeft = 0;
+          el.scrollLeft = 0;
+          direction = 1;
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(el);
     el.addEventListener('scroll', handleScroll, { passive: true });
 
     const scroll = () => {
@@ -57,7 +68,7 @@ const useAutoScroll = () => {
     return () => {
       cancelAnimationFrame(animationFrameId);
       el.removeEventListener('scroll', handleScroll);
-      if (resumeTimer.current) clearTimeout(resumeTimer.current);
+      observer.disconnect();
     };
   }, []);
 
